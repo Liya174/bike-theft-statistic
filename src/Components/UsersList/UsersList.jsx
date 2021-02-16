@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-export class UsersList extends Component {
+class UsersList extends Component {
   state = {
     users: [],
   };
@@ -30,3 +30,5 @@ export class UsersList extends Component {
     );
   }
 }
+
+export default UsersList;

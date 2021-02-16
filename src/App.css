@@ -1,0 +1,60 @@
+.app {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 50px 1fr 30px;
+  background-color: rgb(96, 1, 163);
+  color: white;
+  font-family: "Noto Sans", sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  width: 95%;
+  margin: 0 auto;
+}
+
+.main {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.button {
+  min-width: 60px;
+  cursor: pointer;
+  padding: 5px;
+  margin: 5px;
+  background-color: white;
+  border: none;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+}
+
+.button:not(:disabled):hover {
+  background-color: rgb(207, 207, 29);
+}
+
+.button:disabled {
+  cursor: auto;
+}
+
+.label {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+  align-items: center;
+  text-align: end;
+}
+
+.input {
+  width: 250px;
+  padding: 5px;
+  margin-left: 10px;
+  font-size: 16px;
+}

@@ -1,0 +1,30 @@
+.menu {
+  width: 100%;
+  height: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.link {
+  width: 25%;
+  height: 80%;
+  text-decoration: none;
+  color: black;
+  font-size: 1.5em;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: width 0.3s, height 0.3s;
+  -webkit-transition: width 0.3s, height 0.3s;
+  -moz-transition: width 0.3s, height 0.3s;
+  -ms-transition: width 0.3s, height 0.3s;
+  -o-transition: width 0.3s, height 0.3s;
+}
+
+.link:hover {
+  width: 30%;
+  height: 85%;
+}
