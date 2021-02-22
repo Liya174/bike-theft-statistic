@@ -6,94 +6,114 @@ import {
   composeValidators,
   maxLength,
   required,
-  emailType,
+  letters,
 } from "../../utils/validators/validators.js";
 
 import "../../App.css";
 
 const Input = Element("input");
+const Textarea = Element("textarea");
 
-const TheftMessageForm = ({ onSubmit }) => {
-  // {status: "new",
-  // date: "", //	Date
-  // licenseNumber: "",
-  // color: "",
-  // type: "",
-  // ownerFullName: "",
-  // officer: "",
-  // createdAt: "",
-  // updateAt: "",
-  // clientId: "",
-  // description: "",
-  // resolution: ""}
-
+const TheftMessageForm = ({ onSubmit, officers }) => {
+  //  officerId
   return (
     <Form
       onSubmit={onSubmit}
       render={({ handleSubmit, form, submitting, pristine }) => (
         <form className={s.form} onSubmit={handleSubmit}>
-          <label className="label">
-            Имя:
+          <div className={s.string}>
+            <label>ФИО:</label>
             <Field
               component={Input}
               className="input"
-              placeholder="Имя"
+              placeholder="Фамилия Имя Отчество"
               type="text"
-              name="firstName"
+              name="ownerFullName"
+              validate={composeValidators(required, letters)}
+            />
+          </div>
+          <div className={s.string}>
+            <label>Номер лицензии: </label>
+            <Field
+              component={Input}
+              className="input"
+              placeholder="№ лицензии"
+              type="text"
+              name="licenseNumber"
               validate={composeValidators(required, maxLength(30))}
             />
-          </label>
-          <label className="label">
-            Фамилия:
-            <Field
-              component={Input}
-              className="input"
-              placeholder="Фамилия"
-              type="text"
-              name="lastName"
-              validate={composeValidators(required, maxLength(30))}
-            />
-          </label>
-          <label className="label">
-            Email:
-            <Field
-              component={Input}
-              className="input"
-              placeholder="email"
-              type="text"
-              name="email"
-              validate={composeValidators(required, emailType)}
-            />
-          </label>
-          <label className="label">
-            Пароль:
-            <Field
-              component={Input}
-              className="input"
-              placeholder="пароль"
-              type="password"
-              name="password"
-              validate={required}
-            />
-          </label>
-          <label className="label">
-            Повторите пароль:
-            <Field
-              component={Input}
-              className="input"
-              placeholder="пароль"
-              type="password"
-              name="repassword"
-              validate={required}
-            />
-          </label>
+          </div>
+          <div className={s.string}>
+            <div className={s.halfString}>
+              <label>Цвет:</label>
+              <Field
+                component={Input}
+                className={s.color}
+                type="color"
+                name="color"
+                initialValue="#ffffff"
+                validate={composeValidators(required)}
+              />
+            </div>
+            <div className={s.halfString}>
+              <label>Тип:</label>
+              <label className={s.radio}>
+                <Field
+                  component="input"
+                  className={s.radioDot}
+                  type="radio"
+                  name="type"
+                  value="sport"
+                  validate={composeValidators(required)}
+                />{" "}
+                Горный
+              </label>
 
+              <label className={s.radio}>
+                <Field
+                  component="input"
+                  className={s.radioDot}
+                  type="radio"
+                  name="type"
+                  value="general"
+                  validate={composeValidators(required)}
+                />{" "}
+                Прогулочный
+              </label>
+            </div>
+          </div>
+          <div className={s.string}>
+            <label>Ответственный сотрудник:</label>
+            <Field name="officer" component="select" className="input">
+              <option />
+
+              {officers.length > 0
+                ? officers.map((officer) => {
+                    if (officer.approved) {
+                      return (
+                        <option value={officer._id} key={officer._id}>
+                          {officer.firstName} {officer.lastName}
+                        </option>
+                      );
+                    }
+                  })
+                : ""}
+            </Field>
+          </div>
+          <label>Описание:</label>
+          <Field
+            component={Textarea}
+            name="description"
+            className={s.textarea}
+            placeholder="Описание"
+            validate={composeValidators(required, maxLength(200))}
+          />
           <div className={s.buttons}>
             <button
               className={`${s.submit} button`}
               disabled={submitting || pristine}
             >
-              {buttonName}
+              Отправить
             </button>
             <button
               className={`${s.submit} button`}

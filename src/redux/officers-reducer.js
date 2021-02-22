@@ -1,9 +1,7 @@
-import { authAPI, officersAPI } from "../api/api.js";
+import { officersAPI } from "../api/api.js";
 import store from "./store.js";
 
 const UPDATE_OFFICERS_LIST = "officers/UPDATE_OFFICERS_LIST";
-const SELECT_OFFICER = "officers/SELECT_OFFICER";
-const UNSELECT_OFFICER = "officers/UNSELECT_OFFICER";
 
 const initialState = {
   officers: [],
@@ -17,26 +15,6 @@ const officersReducer = (state = initialState, action) => {
         ...state,
         officers: action.officers,
       };
-
-    // case SELECT_OFFICER:
-    //   return {
-    //     ...state,
-    //     officers: state.officers.map((officer) => {
-    //       if (officer._id === action.id) {
-    //         return { ...officer, selected: true };
-    //       } else return officer;
-    //     }),
-    //   };
-
-    // case UNSELECT_OFFICER:
-    //   return {
-    //     ...state,
-    //     officers: state.officers.map((officer) => {
-    //       if (officer._id === action.id) {
-    //         return { ...officer, selected: false };
-    //       } else return officer;
-    //     }),
-    //   };
 
     default:
       return state;

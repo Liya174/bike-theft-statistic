@@ -18,3 +18,9 @@ export const emailType = (value) => {
   if (regExpEmail.test(value)) return undefined;
   return "Некорректный email";
 };
+
+export const letters = (value) => {
+  const regExpEmail = /^[a-zа-яё]+$/i;
+  if (regExpEmail.test(value)) return undefined;
+  return "Используйте только буквы";
+};

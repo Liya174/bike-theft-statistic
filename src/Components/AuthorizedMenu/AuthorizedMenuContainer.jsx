@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
 import AuthorizedMenu from "./AuthorizedMenu.jsx";

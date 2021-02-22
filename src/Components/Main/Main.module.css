@@ -1,3 +1,7 @@
+.main {
+  height: calc(100vh - 100px);
+}
+
 .link {
   text-decoration: none;
   color: black;

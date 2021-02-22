@@ -18,8 +18,8 @@ const App = (props) => {
   return (
     <div className="app">
       <HeaderContainer />
-      <div className="container">
-        <div className="main">
+      <div className="main">
+        <div className="container">
           <Switch>
             <Route path="/registration" component={UserCreateContainer} />
             <Route path="/sign-in" component={SignInContainer} />

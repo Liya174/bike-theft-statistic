@@ -18,13 +18,13 @@ const OfficersContainer = ({
   deleteOfficer,
   addNewOfficer,
 }) => {
-  useEffect(() => {
-    getOfficersList();
-  }, []);
-
   if (!isAuth) {
     return <Redirect to={"/"} />;
   }
+
+  useEffect(() => {
+    getOfficersList();
+  }, []);
 
   //для добавления нового сотрудника
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);

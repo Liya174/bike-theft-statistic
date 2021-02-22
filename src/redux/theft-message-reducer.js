@@ -1,48 +1,60 @@
+import { casesAPI } from "../api/api";
+import store from "./store.js";
+
 const ADD_THEFTS = "theft-message/ADD_THEFTS";
 
 const initialState = {
-  allThefts: [],
+  thefts: [],
 };
 
 const theftMessageReducer = (state = initialState, action) => {
   switch (action.type) {
+    case ADD_THEFTS:
+      return {
+        ...state,
+        thefts: action.thefts,
+      };
+
     default:
       return state;
   }
 };
 
 //--------- ACTIONS ---------------------
-export const addThefts = (allThefts) => ({
+export const addThefts = (thefts) => ({
   type: ADD_THEFTS,
-  allThefts,
+  thefts,
 });
 
 //------------ THUNKS ----------------
 
 export const addNewMessage = (messageData) => (dispatch) => {
-  const {
-    licenseNumber,
-    color,
-    type,
-    ownerFullName,
-    officerId,
-    description,
-  } = messageData;
+  const token = store.getState().auth.token;
   const newMessage = {
     status: "new",
-    date: new Date(),
-    licenseNumber,
-    color,
-    type,
-    ownerFullName,
-    officer: officerId,
-    createdAt: new Date(),
-    updateAt: new Date(),
-    // clientId: "",
-    description,
+    date: Date.now(),
+    licenseNumber: messageData.licenseNumber,
+    color: messageData.color,
+    type: messageData.type,
+    ownerFullName: messageData.ownerFullName,
+    officer: messageData.officer,
+    createdAt: Date.now(),
+    updateAt: Date.now(),
+    description: messageData.description,
     resolution: "",
   };
-  console.log(newMessage);
+  casesAPI
+    .addNewMessage(token, newMessage)
+    .then((res) => console.log(res))
+    .catch((req) => alert(req.message));
+};
+
+export const getTheftMessages = () => (dispatch) => {
+  const token = store.getState().auth.token;
+  casesAPI
+    .getAllMessages(token)
+    .then((res) => dispatch(addThefts(res.data)))
+    .catch((req) => alert(req.message));
 };
 
 export default theftMessageReducer;

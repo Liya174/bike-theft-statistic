@@ -5,6 +5,7 @@
 }
 
 .footerContainer {
+  width: 100%;
   display: flex;
   justify-content: flex-end;
   align-content: center;

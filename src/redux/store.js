@@ -5,7 +5,7 @@ import theftMessageReducer from "./theft-message-reducer.js";
 import officersReducer from "./officers-reducer.js";
 
 const reducers = combineReducers({
-  theftMessage: theftMessageReducer,
+  theftMessages: theftMessageReducer,
   auth: authReducer,
   officers: officersReducer,
 });
