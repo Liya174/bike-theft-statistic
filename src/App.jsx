@@ -6,13 +6,13 @@ import store from "./redux/store.js";
 
 import Footer from "./Components/Footer/Footer.jsx";
 import HeaderContainer from "./Components/Header/HeaderContainer.jsx";
-import UsersList from "./Components/UsersList/UsersList.jsx";
 import TheftMessageContainer from "./Components/TheftMessage/TheftMessageContainer.jsx";
 import UserCreateContainer from "./Components/UserCreate/UserCreateContainer.jsx";
 import SignInContainer from "./Components/SignIn/SignInContainer.jsx";
 import MainContainer from "./Components/Main/MainContainer.jsx";
 import AuthorizedMenuContainer from "./Components/AuthorizedMenu/AuthorizedMenuContainer.jsx";
-import WorkersContainer from "./Components/Workers/WorkersContainer.jsx";
+import OfficersContainer from "./Components/Officers/OfficersContainer.jsx";
+import StolenBikesContainer from "./Components/StolenBikes/StolenBikesContainer.jsx";
 
 const App = (props) => {
   return (
@@ -21,13 +21,14 @@ const App = (props) => {
       <div className="container">
         <div className="main">
           <Switch>
-            <Route path="/theft-message" component={TheftMessageContainer} />
-            {/* <Route path="/users" component={UsersList} /> */}
             <Route path="/registration" component={UserCreateContainer} />
             <Route path="/sign-in" component={SignInContainer} />
             <Route path="/menu" component={AuthorizedMenuContainer} />
-            <Route path="/workers" component={WorkersContainer} />
-            <Route path="/" component={MainContainer} />
+            <Route path="/officers" component={OfficersContainer} />
+            <Route path="/stolen-bikes" component={StolenBikesContainer} />
+            <Route path="/theft-message" component={TheftMessageContainer} />
+            <Route path="/" exact component={MainContainer} />
+            <Route path="*" render={() => <div>404 NOT FOUND</div>} />
           </Switch>
         </div>
       </div>

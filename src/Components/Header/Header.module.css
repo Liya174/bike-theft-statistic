@@ -9,3 +9,19 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.breadcrumbs {
+  display: flex;
+  justify-content: space-between;
+}
+
+.link {
+  text-decoration: none;
+  color: white;
+  margin: 0 20px;
+}
+.link.active {
+  text-decoration: underline;
+  font-weight: 600;
+  color: rgb(207, 207, 29);
+}

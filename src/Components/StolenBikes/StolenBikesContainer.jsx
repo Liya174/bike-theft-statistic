@@ -1,14 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
-import AuthorizedMenu from "./AuthorizedMenu.jsx";
+import StolenBikes from "./StolenBikes.jsx";
 
-const AuthorizedMenuContainer = ({ isAuth }) => {
+const StolenBikesContainer = ({ isAuth }) => {
   if (!isAuth) {
     return <Redirect to={"/"} />;
   }
 
-  return <AuthorizedMenu />;
+  return <StolenBikes isAuth={isAuth} />;
 };
 
 const mapStateToProps = (state) => {
@@ -17,4 +17,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {})(AuthorizedMenuContainer);
+export default connect(mapStateToProps, {})(StolenBikesContainer);

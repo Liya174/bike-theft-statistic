@@ -61,7 +61,7 @@ export const authMeSuccess = (token) => ({
   token,
 });
 
-export const signOut = () => ({
+export const signOutSuccess = () => ({
   type: SIGN_OUT,
 });
 
@@ -75,7 +75,7 @@ export const signUp = (userData) => (dispatch) => {
   dispatch(updateUserData(userData));
   const userInfo = store.getState().auth.userInfo;
   authAPI
-    .signUp(userInfo)
+    .signUp({ ...userInfo, approved: true })
     .then((res) => {
       if (res.status === 201) {
         alert("Вы зарегистрированы!");
@@ -99,6 +99,14 @@ export const signIn = (userData) => (dispatch) => {
       } else alert(res.statusText);
     })
     .catch((err) => alert(err));
+};
+
+export const signOut = () => (dispatch) => {
+  localStorage.setItem(
+    "bikeTheftAuthorization",
+    JSON.stringify({ token: null, isAuth: false })
+  );
+  dispatch(signOutSuccess());
 };
 
 export default authReducer;

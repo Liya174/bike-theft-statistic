@@ -13,7 +13,7 @@ import "../../App.css";
 
 const Input = Element("input");
 
-const UserCreateForm = ({ onSubmit }) => {
+const UserCreateForm = ({ onSubmit, buttonName, currentOfficer }) => {
   return (
     <Form
       onSubmit={onSubmit}
@@ -22,6 +22,7 @@ const UserCreateForm = ({ onSubmit }) => {
           <label className="label">
             Имя:
             <Field
+              initialValue={currentOfficer ? currentOfficer.firstName : ""}
               component={Input}
               className="input"
               placeholder="Имя"
@@ -33,6 +34,7 @@ const UserCreateForm = ({ onSubmit }) => {
           <label className="label">
             Фамилия:
             <Field
+              initialValue={currentOfficer ? currentOfficer.lastName : ""}
               component={Input}
               className="input"
               placeholder="Фамилия"
@@ -44,6 +46,7 @@ const UserCreateForm = ({ onSubmit }) => {
           <label className="label">
             Email:
             <Field
+              initialValue={currentOfficer ? currentOfficer.email : ""}
               component={Input}
               className="input"
               placeholder="email"
@@ -74,12 +77,13 @@ const UserCreateForm = ({ onSubmit }) => {
               validate={required}
             />
           </label>
+
           <div className={s.buttons}>
             <button
               className={`${s.submit} button`}
               disabled={submitting || pristine}
             >
-              Зарегистрироваться
+              {buttonName}
             </button>
             <button
               className={`${s.submit} button`}

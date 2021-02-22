@@ -4,7 +4,7 @@ import { Redirect } from "react-router";
 import { signUp } from "../../redux/auth-reducer.js";
 import UserCreateForm from "./UserCreateForm.jsx";
 
-const UserCreateContainer = ({ userInfo, isAuth, signUp }) => {
+const UserCreateContainer = ({ isAuth, signUp }) => {
   if (isAuth) {
     return <Redirect to={"/"} />;
   }
@@ -13,7 +13,13 @@ const UserCreateContainer = ({ userInfo, isAuth, signUp }) => {
     signUp(formData);
   };
 
-  return <UserCreateForm onSubmit={onSubmit} />;
+  return (
+    <UserCreateForm
+      onSubmit={onSubmit}
+      buttonName="Зарегистрироваться"
+      isRegistration={true}
+    />
+  );
 };
 
 const mapStateToProps = (state) => {

@@ -1,13 +1,13 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunkMiddleware from "redux-thunk";
-import authReducer from "./auth-reducer";
-import theftMessageReducer from "./theft-message-reducer";
-import workersReducer from "./workers-reducer";
+import authReducer from "./auth-reducer.js";
+import theftMessageReducer from "./theft-message-reducer.js";
+import officersReducer from "./officers-reducer.js";
 
 const reducers = combineReducers({
   theftMessage: theftMessageReducer,
   auth: authReducer,
-  workers: workersReducer,
+  officers: officersReducer,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

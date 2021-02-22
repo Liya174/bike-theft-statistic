@@ -1,12 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router";
 import Main from "./Main.jsx";
 
 const MainContainer = ({ isAuth }) => {
-  console.log("isAuth: ", isAuth);
-
   if (isAuth) {
-    console.log("yes");
     return <Redirect to={"/menu"} />;
   }
 
@@ -19,4 +17,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {})(Main);
+export default connect(mapStateToProps, {})(MainContainer);
