@@ -57,7 +57,6 @@ const StolenBikesContainer = ({
       const currentOfficer = officers.find(
         (officer) => officer._id === theft.officer
       );
-      console.log(theft);
 
       formattedThefts.push({
         ...theft,

@@ -38,16 +38,12 @@ const EditMessage = ({
   const saveNewValue = (param) => {
     if (editParamValue.trim() && editParamValue !== currentMessage[param]) {
       let value;
-      console.log(editParamValue.split(" ")[0]);
-      console.log(editParamValue.split(" ")[1]);
-      console.log(officers);
       if (param === "officer") {
         value = officers.find(
           (officer) =>
             officer.firstName === editParamValue.split(" ")[0] &&
             officer.lastName === editParamValue.split(" ")[1]
         )._id;
-        console.log(value);
       } else value = editParamValue;
       const editingValue = { [editParam]: value };
       editMessage(currentMessage._id, editingValue);
@@ -108,7 +104,6 @@ const EditMessage = ({
                 onBlur={() => saveNewValue("officer")}
               >
                 {officers.map((officer, index) => {
-                  console.log(officer);
                   return (
                     <option key={index} className={s.option}>
                       {officer.firstName} {officer.lastName}
