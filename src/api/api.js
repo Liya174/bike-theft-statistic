@@ -2,7 +2,6 @@ import * as axios from "axios";
 
 const instance = (token) => {
   return axios.create({
-    // withCredentials: true,
     baseURL: " http://84.201.129.203:8888/api/",
     headers: {
       "Content-Type": "application/json",
@@ -35,9 +34,9 @@ export const officersAPI = {
       .post(`/officers`, officerData)
       .then((response) => response);
   },
-  editOfficer(officerData, token) {
+  editOfficer(token, officerId, officerData) {
     return instance(token)
-      .put(`/officers/${officerData._id}`, officerData)
+      .put(`/officers/${officerId}`, officerData)
       .then((response) => response);
   },
   deleteOfficer(id, token) {
@@ -48,6 +47,11 @@ export const officersAPI = {
 };
 
 export const casesAPI = {
+  addNewUnauthorizedMessage(newMessage) {
+    return instance()
+      .post(`/public/report`, newMessage)
+      .then((response) => response);
+  },
   addNewMessage(token, newMessage) {
     return instance(token)
       .post(`/cases`, newMessage)

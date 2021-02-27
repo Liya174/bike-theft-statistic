@@ -38,7 +38,7 @@ const OfficersContainer = ({
   //для редактирвоания выбранного сотрудника
   const [selectedOfficerId, setSelectedOfficerId] = useState(null);
   const openEditOfficer = (id) => setSelectedOfficerId(id);
-  const closeEditOfficer = (id) => setSelectedOfficerId(null);
+  const closeEditOfficer = () => setSelectedOfficerId(null);
 
   return (
     <Officers

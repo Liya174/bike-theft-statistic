@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import UserCreateForm from "../../UserCreate/UserCreateForm.jsx";
 import s from "../Officers.module.css";
 import close from "../../../img/close.svg";
 import edit from "../../../img/edit.svg";
@@ -172,7 +171,7 @@ const EditOfficer = ({
             </button>
           )}
         </div>
-        <button className={s.close} onClick={() => closeEditOfficer()}>
+        <button className={s.close} onClick={closeEditOfficer}>
           <img src={close} className={s.closeImage} alt="Х" />
         </button>
       </div>

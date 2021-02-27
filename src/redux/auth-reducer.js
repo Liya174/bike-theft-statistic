@@ -1,10 +1,11 @@
 import { authAPI } from "../api/api.js";
 import store from "./store.js";
 
+import { MY_CLIENT_ID } from "./const.js";
+
 const AUTH_ME_SUCCESS = "auth/AUTH_ME";
 const SIGN_OUT = "auth/SIGN_OUT";
 const UPDATE_USER_DATA = "auth/UPDATE_USER_DATA";
-const MY_CLIENT_ID = "bHVzeWEtMTk5MkBtYWlsLnJ1";
 
 const authorization = JSON.parse(
   localStorage.getItem("bikeTheftAuthorization")

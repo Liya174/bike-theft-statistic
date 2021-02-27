@@ -10,11 +10,12 @@ import {
 } from "../../utils/validators/validators.js";
 
 import "../../App.css";
+import { typeFormatterToRus } from "../../utils/formatters/formatters";
 
 const Input = Element("input");
 const Textarea = Element("textarea");
 
-const TheftMessageForm = ({ onSubmit, officers }) => {
+const TheftMessageForm = ({ isAuth, onSubmit, officers }) => {
   //  officerId
   return (
     <Form
@@ -22,7 +23,7 @@ const TheftMessageForm = ({ onSubmit, officers }) => {
       render={({ handleSubmit, form, submitting, pristine }) => (
         <form className={s.form} onSubmit={handleSubmit}>
           <div className={s.string}>
-            <label>ФИО:</label>
+            <label>ФИО арендатора:</label>
             <Field
               component={Input}
               className="input"
@@ -57,54 +58,58 @@ const TheftMessageForm = ({ onSubmit, officers }) => {
             </div>
             <div className={s.halfString}>
               <label>Тип:</label>
-              <label className={s.radio}>
+              <label className="radio">
                 <Field
                   component="input"
-                  className={s.radioDot}
+                  className="radioDot"
                   type="radio"
                   name="type"
                   value="sport"
                   validate={composeValidators(required)}
                 />{" "}
-                Горный
+                {typeFormatterToRus("sport")}
               </label>
 
-              <label className={s.radio}>
+              <label className="radio">
                 <Field
                   component="input"
-                  className={s.radioDot}
+                  className="radioDot"
                   type="radio"
                   name="type"
                   value="general"
                   validate={composeValidators(required)}
                 />{" "}
-                Прогулочный
+                {typeFormatterToRus("general")}
               </label>
             </div>
           </div>
-          <div className={s.string}>
-            <label>Ответственный сотрудник:</label>
-            <Field name="officer" component="select" className="input">
-              <option />
+          {isAuth ? (
+            <div className={s.string}>
+              <label>Ответственный сотрудник:</label>
+              <Field name="officer" component="select" className="input">
+                <option />
 
-              {officers.length > 0
-                ? officers.map((officer) => {
-                    if (officer.approved) {
-                      return (
-                        <option value={officer._id} key={officer._id}>
-                          {officer.firstName} {officer.lastName}
-                        </option>
-                      );
-                    }
-                  })
-                : ""}
-            </Field>
-          </div>
+                {officers.length > 0
+                  ? officers.map((officer) => {
+                      if (officer.approved) {
+                        return (
+                          <option value={officer._id} key={officer._id}>
+                            {officer.firstName} {officer.lastName}
+                          </option>
+                        );
+                      }
+                    })
+                  : ""}
+              </Field>
+            </div>
+          ) : (
+            ""
+          )}
           <label>Описание:</label>
           <Field
             component={Textarea}
             name="description"
-            className={s.textarea}
+            className="textarea"
             placeholder="Описание"
             validate={composeValidators(required, maxLength(200))}
           />

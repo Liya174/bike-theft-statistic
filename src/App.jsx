@@ -14,28 +14,32 @@ import AuthorizedMenuContainer from "./Components/AuthorizedMenu/AuthorizedMenuC
 import OfficersContainer from "./Components/Officers/OfficersContainer.jsx";
 import StolenBikesContainer from "./Components/StolenBikes/StolenBikesContainer.jsx";
 
-const App = (props) => {
-  return (
-    <div className="app">
-      <HeaderContainer />
-      <div className="main">
-        <div className="container">
-          <Switch>
-            <Route path="/registration" component={UserCreateContainer} />
-            <Route path="/sign-in" component={SignInContainer} />
-            <Route path="/menu" component={AuthorizedMenuContainer} />
-            <Route path="/officers" component={OfficersContainer} />
-            <Route path="/stolen-bikes" component={StolenBikesContainer} />
-            <Route path="/theft-message" component={TheftMessageContainer} />
-            <Route path="/" exact component={MainContainer} />
-            <Route path="*" render={() => <div>404 NOT FOUND</div>} />
-          </Switch>
+class App extends React.Component {
+  render() {
+    return (
+      <div className="app">
+        <HeaderContainer />
+        <div className="main">
+          <div className="container">
+          <React.Suspense fallback={<p>Загрузка...</p>}>
+            <Switch>
+              <Route path="/registration" component={UserCreateContainer} />
+              <Route path="/sign-in" component={SignInContainer} />
+              <Route path="/menu" component={AuthorizedMenuContainer} />
+              <Route path="/officers" component={OfficersContainer} />
+              <Route path="/stolen-bikes" component={StolenBikesContainer} />
+              <Route path="/theft-message" component={TheftMessageContainer} />
+              <Route path="/" exact component={MainContainer} />
+              <Route path="*" render={() => <div>404 NOT FOUND</div>} />
+            </Switch>
+            </React.Suspense>
+          </div>
         </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
-  );
-};
+    );
+  }
+}
 
 const BikeApp = () => {
   return (

@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getOfficersList } from "../../redux/officers-reducer.js";
-import { addNewMessage } from "../../redux/theft-message-reducer.js";
+import {
+  addNewMessage,
+  addNewUnauthorizedMessage,
+} from "../../redux/theft-message-reducer.js";
 import TheftMessageForm from "./TheftMessageForm.jsx";
 
 const TheftMessageContainer = ({
@@ -9,13 +12,14 @@ const TheftMessageContainer = ({
   officers,
   addNewMessage,
   getOfficersList,
+  addNewUnauthorizedMessage,
 }) => {
   useEffect(() => {
-    getOfficersList();
+    isAuth ? getOfficersList() : "";
   }, []);
 
   const onNewMessageSubmit = (formData) => {
-    addNewMessage(formData);
+    isAuth ? addNewMessage(formData) : addNewUnauthorizedMessage(formData);
   };
 
   return (
@@ -34,6 +38,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { addNewMessage, getOfficersList })(
-  TheftMessageContainer
-);
+export default connect(mapStateToProps, {
+  addNewMessage,
+  getOfficersList,
+  addNewUnauthorizedMessage,
+})(TheftMessageContainer);

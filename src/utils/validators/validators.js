@@ -20,7 +20,7 @@ export const emailType = (value) => {
 };
 
 export const letters = (value) => {
-  const regExpEmail = /^[a-zа-яё]+$/i;
+  const regExpEmail = /^[a-zа-яё\s]+$/i;
   if (regExpEmail.test(value)) return undefined;
   return "Используйте только буквы";
 };

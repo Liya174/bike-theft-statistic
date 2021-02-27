@@ -53,13 +53,9 @@ export const addNewOfficer = (newOfficerData) => (dispatch) => {
 };
 
 export const editOfficer = (id, editingValue) => (dispatch) => {
-  const chosenOfficer = store
-    .getState()
-    .officers.officers.find((officer) => officer._id === id);
-  const newOfficerData = { ...chosenOfficer, ...editingValue };
   const token = store.getState().auth.token;
   officersAPI
-    .editOfficer(newOfficerData, token)
+    .editOfficer(token, id, editingValue)
     .then((res) => {
       if (res.status === 200) {
         dispatch(getOfficersList());

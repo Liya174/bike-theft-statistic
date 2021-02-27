@@ -24,6 +24,7 @@
   -moz-transition: weight 0.3s, height 0.3s;
   -ms-transition: weight 0.3s, height 0.3s;
   -o-transition: weight 0.3s, height 0.3s;
+  overflow: hidden;
 }
 .link:hover {
   width: 30%;
